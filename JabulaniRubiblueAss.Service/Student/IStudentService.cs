@@ -9,5 +9,6 @@ namespace JabulaniRubiblueAss.Service.Student
     public interface IStudentService : IGenericService<Repository.ORM.Student>
     {
         Task<int> GetNumberOfCourse(int StudentId);
+        Task<Repository.ORM.Student> GetStudentCourseByStudentId(int StudentId);
     }
 }

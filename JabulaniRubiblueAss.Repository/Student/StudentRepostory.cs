@@ -14,10 +14,14 @@ namespace JabulaniRubiblueAss.Repository.Student
         {
             DbContext = dbContext;
         }
-
         public async Task<ORM.Student> GetStudentRelatedCoureses(int StudentId)
         {
-            return await DbContext.Students.Include(x => x.StudentCourses).SingleOrDefaultAsync(k => k.StudentId.Equals(StudentId));
+            var student = await DbContext.Students.Include(x => x.StudentCourses).SingleOrDefaultAsync(k => k.StudentId.Equals(StudentId));
+            foreach (var item in student.StudentCourses)
+            {
+                DbContext.Entry(item).Reference(x => x.Course).Load();
+            }
+            return student;
         }
     }
 }

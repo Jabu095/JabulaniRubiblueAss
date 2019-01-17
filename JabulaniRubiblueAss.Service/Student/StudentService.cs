@@ -21,5 +21,10 @@ namespace JabulaniRubiblueAss.Service.Student
             var student = await StudentRepostory.GetStudentRelatedCoureses(StudentId);
             return student.StudentCourses.Count;
         }
+
+        public async Task<Repository.ORM.Student> GetStudentCourseByStudentId(int StudentId)
+        {
+            return await StudentRepostory.GetStudentRelatedCoureses(StudentId);
+        }
     }
 }

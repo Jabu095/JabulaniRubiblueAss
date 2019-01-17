@@ -4,14 +4,16 @@ using JabulaniRubiblueAss.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JabulaniRubiblueAss.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190116125115_uniquekeys")]
+    partial class uniquekeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,16 +35,7 @@ namespace JabulaniRubiblueAss.Repository.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("CourseName")
-                        .IsUnique()
-                        .HasFilter("[CourseName] IS NOT NULL");
-
                     b.ToTable("Courses");
-
-                    b.HasData(
-                        new { CourseId = 1, CourseName = "Chemistry", EndDate = new DateTime(2018, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), StartDate = new DateTime(2018, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                        new { CourseId = 2, CourseName = "Computer Science", EndDate = new DateTime(2018, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), StartDate = new DateTime(2018, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                    );
                 });
 
             modelBuilder.Entity("JabulaniRubiblueAss.Repository.ORM.Student", b =>
@@ -66,10 +59,6 @@ namespace JabulaniRubiblueAss.Repository.Migrations
                         .HasFilter("[IDNumber] IS NOT NULL");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new { StudentId = 1, EmailAddress = "Jaybeedzivas@gmail.com", FirstName = "Jabulani", IDNumber = "4514512761256", Surname = "Madzivadondo" }
-                    );
                 });
 
             modelBuilder.Entity("JabulaniRubiblueAss.Repository.ORM.StudentCourse", b =>

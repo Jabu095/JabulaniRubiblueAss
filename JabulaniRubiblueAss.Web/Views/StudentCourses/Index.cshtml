@@ -1,0 +1,44 @@
+﻿@model IEnumerable<JabulaniRubiblueAss.Repository.ORM.StudentCourse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of All Linked Students to Courses</h2>
+
+<p>
+    <a asp-action="Create">Link Student to a Course</a>
+</p>
+<p class="text-danger">
+    @ViewBag.error
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.StudentId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
+                @Html.ActionLink("view student details", "Details", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

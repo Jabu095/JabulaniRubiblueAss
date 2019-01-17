@@ -1,0 +1,73 @@
+﻿@model JabulaniRubiblueAss.Repository.ORM.Student
+
+@{
+    ViewData["Title"] = "student Course details";
+}
+
+<h2>Student Course Details</h2>
+
+<div>
+    <h4>Student Course Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDNumber)
+        </dd>
+    </dl>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentCourses.ToList()[0].Course.CourseName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentCourses.ToList()[0].Course.CourseId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentCourses.ToList()[0].Course.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentCourses.ToList()[0].Course.EndDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.StudentCourses)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.CourseId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.EndDate)
+                    </td>
+                    @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
